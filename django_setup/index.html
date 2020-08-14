@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Django Setup - Yantrashala Docs</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Yantrashala Docs</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../code_standard/" class="nav-link">Coding Format</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Django Setup</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../code_standard/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#introduction-to-django" class="nav-link">Introduction to Django</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#what-is-the-django-framework" class="nav-link">What is the Django framework?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#how-is-django-different-from-other-coding-frameworks" class="nav-link">How is Django different from other coding frameworks?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#systems-built-in-django" class="nav-link">Systems built in Django</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#what-are-the-scopes-of-pythondjango" class="nav-link">What are the scopes of Python/Django?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#introduction-to-django-architecture" class="nav-link">Introduction to Django architecture</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#django-project-setup" class="nav-link">Django Project Setup</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#installing-requirements" class="nav-link">Installing Requirements</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#start-project" class="nav-link">Start Project</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#folder-structure" class="nav-link">Folder Structure</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#urls-management" class="nav-link">URLS management</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="introduction-to-django">Introduction to Django</h1>
+<h2 id="what-is-the-django-framework">What is the Django framework?</h2>
+<p>Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design. Built by experienced developers, it takes care of much of the hassle of Web development, so you can focus on writing your app without needing to reinvent the wheel. It’s free and open source.</p>
+<p>It is maintained by the Django Software Foundation(DSF). The core goal of Django is to make complex, database-driven websites easy to create. </p>
+<h2 id="how-is-django-different-from-other-coding-frameworks">How is Django different from other coding frameworks?</h2>
+<p><strong>Easy to learn</strong></p>
+<p>The learning curve of Python/Django suggests that it is easy to learn. This makes it easier for new developers to grasp the Django architecture and coding format in less time.</p>
+<p><strong>Build high-load projects</strong></p>
+<p>Django helps us to build huge projects with multiple functionalities. Some projects built on django are Youtube, Pinterest, Instagram, etc.</p>
+<p><strong>Fast</strong></p>
+<p>Django helps in making it both cost-effective and efficient products. Thus it becomes an ideal solution for developers having a primary focus on deadlines.</p>
+<p><strong>Secure</strong></p>
+<p>Some of the common mistakes include SQL injection, cross-site request forgery, clickjacking, and cross-site scripting. To effectively manage usernames and passwords, the user authentication system is the key. It is ensured that developers don’t commit any mistakes related to security.
+In-built user authentication, user permission management and object-level permissions of Django makes sure that security of the system is maintained effectively.</p>
+<p><strong>Exceedingly scalable</strong></p>
+<p>Some of the busiest sites on the Web leverage Django’s ability to quickly and flexibly scale.</p>
+<h2 id="systems-built-in-django">Systems built in Django</h2>
+<ul>
+<li>Instagram</li>
+<li>Mozilla</li>
+<li>Youtube</li>
+<li>Pinterest</li>
+<li>Disqus</li>
+<li>Open stack</li>
+<li>Spotify</li>
+<li>Bitbucket</li>
+<li>Dropbox, etc.</li>
+</ul>
+<h2 id="what-are-the-scopes-of-pythondjango">What are the scopes of Python/Django?</h2>
+<ol>
+<li>Python is one of the most used languages in 2016, with major tech giants including Google and Quora being its users.</li>
+<li>It also has a huge open-source fanbase, currently ranking 5th in the github repository trends. Also, according to Google Trends, economically developed countries - US, China and South Korea - are its top-3 users, which further strengthens its position.</li>
+<li>Django is the most popular and extensive among all of the python frameworks. It is good for developing complex applications with many individual parts. Its major users include Pinterest, Instagram, Mozilla, The Washington Times, Disqus, Bitbucket and Nextdoor.</li>
+<li>The popularity of the framework is also on a constant rise.</li>
+<li>Python being a popular language in ML and Data analysis, users prefer Django to build the web-application to integrate the results and functionalities written in Python.</li>
+</ol>
+<h2 id="introduction-to-django-architecture">Introduction to Django architecture</h2>
+<p>Django uses MVC(Model-View-Controller) architecture similar to other web application frameworks. But the architecture terminologies are different from other frameworks. </p>
+<p><strong>Model</strong></p>
+<p>Model is used to define the database tables structure for the system.</p>
+<p><strong>View</strong></p>
+<p>View is used to configure the templates for UI. In Django, views are handled as templates. Views are not the regular views we see in other MVC frameworks but serve as controllers in Django.</p>
+<p><strong>Controller</strong></p>
+<p>Controller is used to handle requests and responses of the system. Django views serve as controllers for Django.</p>
+<p>Hence, we can say that Django is a MVT(Model-View-Template) architecture framework. Don’t confuse Django view as that of other MVC framework.</p>
+<p>Now, let’s go through each component that is required to create a normal web application in Django.</p>
+<h3 id="model">Model</h3>
+<p>Model is used to define how the database tables should be. It defines the tables, their attributes, relations, etc. Models are stored in a <strong>“models.py”</strong> file inside the project or app. We will discuss projects and apps later on this document.</p>
+<pre><code>#!models.py
+from django.db import models
+
+
+class DemoTable(models.Model):
+    name = models.CharField(max_length=255)
+    phone = models.CharField(max_length=255)
+    age = models.IntegerField()
+    date = models.DateTimeField()
+</code></pre>
+<p><strong>Don’t worry about the code written above if you don’t get it. We will discuss these later.</strong></p>
+<h3 id="url">URL</h3>
+<p>Urls are routes that redirects the user request to a django view. Urls are basically written in regular expression format and (after django2) normal string format. Urls are included in the <strong>urls.py</strong> file.</p>
+<h3 id="view">View</h3>
+<p>Views act as controllers for django. Any request from the user-end is redirected to the view from a url. After the request is received by the view, it processes the request and sends the required data to the user-end in different formats like HttpResponse, JsonResponse, Redirects, etc.. </p>
+<h3 id="template">Template</h3>
+<p>Templates are the UI used for the user end. Many projects may not involve the use of any templates(if any front-end framework is used). But, templates are in a basic way the UI components like HTML files that show the data returned from django views.</p>
+<h2 id="django-project-setup">Django Project Setup</h2>
+<p>Let’s begin by setting up our first Django project. For this, we need to make sure that we create a new virtual environment for each project we will be creating in the future. </p>
+<h3 id="what-is-a-virtual-environment">What is a virtual environment?</h3>
+<p>Virtual environment helps to keep dependencies required by each project separated by creating different python virtual environments for them. It is required that dependencies of a project do not affect other projects.</p>
+<h3 id="installing-virtual-environment">Installing virtual environment</h3>
+<p>To install a virtual environment, first we need to make sure that our computer has python installed in it. Python3 is preferred as Python2 has been depreciated from 2020. Also, install pip for the suitable python version.</p>
+<p>After everything is installed, you can use the following command to install virtualenv:</p>
+<pre><code>pip install virtualenv
+pip3 install virtualenv (for python3)
+</code></pre>
+<p>Now you can create a virtual environment by the following command:</p>
+<pre><code>virtualenv &lt;location_of_virtual_env&gt; -p &lt;python_version&gt;
+</code></pre>
+<p>For example:</p>
+<pre><code>**In Linux**
+virtualenv ~/.virtualenvs/venv -p python3
+**In Windows**
+virtualenv C:\Users\public\virtualenvs\venv -p C:\Python\Python36\python.exe
+</code></pre>
+<p>Now activate the virtual environment you have just created as:</p>
+<pre><code>**In Linux**
+source ~/.virtualenvs/venv/bin/activate
+**In Windows**
+C:\Users\publc\virtualenvs\venv\Scripts\activate
+</code></pre>
+<p><strong>Make sure you get the path correct to the virtual environment.</strong></p>
+<p>You can know if the virtual environment is activated by checking if (venv) is seen in the beginning of the command in your terminal or command line interface. For example:</p>
+<pre><code>(venv) C:\Users\public\Desktop&gt;
+</code></pre>
+<p>Now you are ready to install required packages inside the virtual environment.
+To deactivate the virtual environment you can use the following command:</p>
+<pre><code>(venv) C:\Users\public\Desktop&gt; deactivate
+C:\Users\public\Desktop&gt;
+</code></pre>
+<h3 id="installing-packages-inside-virtual-environment">Installing packages inside virtual environment</h3>
+<p>To install packages inside the virtual environment, make sure that the virtual environment is activated first. Then you can install any packages using pip. For example, you can install Django with following command:</p>
+<pre><code>pip install django
+</code></pre>
+<p>There are different ways to install a package. You can install a package with specified version as:</p>
+<pre><code>pip install django==2.0.10
+</code></pre>
+<p>Similarly, you can install the package of latest version as:</p>
+<pre><code>pip install -U django
+</code></pre>
+<p>Also, you can just specify the package name and the available version is directly installed by the system:
+    pip install django</p>
+<h2 id="installing-requirements">Installing Requirements</h2>
+<p>You can install django by using any of the methods provided above. But it is recommended you use -U because it helps you to get the latest versions. But sometimes when the project is already existing, you need to find the exact version used in that project and install django of the same version. Normally, the required packages can be found in requirements.txt file of an existing project. In case that you encounter a requirements.txt file, you can install all the packages listed in the file by using the following command:</p>
+<pre><code>pip install -r requirements.txt
+</code></pre>
+<p>This command will make sure all the packages required for the project will be installed with the exact version listed in the file.</p>
+<h2 id="start-project">Start Project</h2>
+<p>After you have activated your environment and installed Django in it, you will be able to start a new project. There are two ways in which we can set up your project.</p>
+<p><strong>Note: We will be using the second approach for our projects.</strong></p>
+<p>In the first approach, go to your folder where you want to keep your Django projects. I will be creating a new directory named django-projects in my home directory.</p>
+<pre><code>mkdir django-projects
+</code></pre>
+<p>Then inside django-projects, we will create a django project named “<strong>demo</strong>”.</p>
+<pre><code>django-admin startproject demo
+</code></pre>
+<p>Now we can see a “demo” folder created inside django-projects. Let’s look at the folder structure for this project.</p>
+<pre><code>django-projects/
+    demo/
+        demo/
+            __init__.py
+            settings.py
+            urls.py
+            wsgi.py
+        manage.py
+</code></pre>
+<p>Our demo project consists of a file named manage.py and a folder named demo. manage.py is automatically created for each project. The use of manage.py file is the same as that of django-admin but we can specify django environment variables which will be used by settings.py in our project. Similarly, inside the demo app of the demo project, we can see various files like <code>__init__.py</code>, <code>settings.py</code>, <code>urls.py</code> and <code>wsgi.py</code>. These files are also automatically created and are useful to run our project. settings.py file helps us to define different variables for our project environment like <code>SECRET_KEY</code>, <code>ALLOWED_HOSTS</code>, <code>MIDDLEWARE</code>, <code>TEMPLATES</code>, etc. Also, it helps to manage how static files and media files are served. The main file that is required for project setup is settings.py file.</p>
+<p>In Django 3 version, <code>wsgi.py</code> is replaced by <code>asgi.py</code> file. We will discuss this part if required. <code>wsgi.py</code> is used to run our project in a server environment.</p>
+<p><code>urls.py</code> file is used to define the url routes that will be included in our project. We will include urls from other apps in this file.</p>
+<p>Now we will define other apps we will require sitting in the <strong>“demo”</strong> app folder. But be aware that <strong>“demo”</strong> is both the project folder and an app folder. The folder in the upper hierarchy is the project folder and the folder with the same name inside the project folder is an app folder. This has caused some misunderstanding. To solve this misunderstanding and having a good folder structure is what we are trying to achieve. </p>
+<p>Second approach helps us to solve the folder name redundancy and misunderstanding. In this approach, go to your folder where you will store your django projects. I will use the django-projects folder. Follow the below steps to get a good folder structure:</p>
+<p>First, create a folder inside your django projects folder(django-projects) in my case with any name. For example: django-blog. </p>
+<pre><code>mkdir django-blog
+</code></pre>
+<p>Then, go inside the django-blog project and create a project inside django-blog.
+    django-admin startproject blog .
+This creates only a manage.py file and blog folder inside our django-blog folder. Unlike the previous approach, we have removed the redundancy of folder names within a project. Now our new folder structure will be:</p>
+<pre><code>django-blog/
+    blog/
+        __init__.py
+        settings.py
+        urls.py
+        wsgi.py
+    manage.py
+</code></pre>
+<p>As you can see from the image above, we have a django-blog folder containing a blog folder and manage.py file.</p>
+<p>For each app to be created in this project, we will create them inside the blog app. For this, we will go inside the blog folder:</p>
+<pre><code>cd blog
+</code></pre>
+<p>Create a new app labelled core:</p>
+<pre><code>django-admin startapp core
+</code></pre>
+<p>In settings.py file, register the app as:</p>
+<pre><code># Application definition
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
+
+INNER_APPS = [
+    'blog.core',
+]
+
+INSTALLED_APPS += INNER_APPS
+</code></pre>
+<p>For other apps, we will use the same method to create and register the app.</p>
+<p><strong>Note: Please use the second approach for development.</strong></p>
+<h2 id="folder-structure">Folder Structure</h2>
+<p>After setting up the project following the second method as above, we will have a folder structure as shown below:</p>
+<pre><code>django-blog/
+    blog/
+        core/
+            migrations/
+            __init__.py
+            admin.py
+            apps.py
+            models.py
+            tests.py
+            views.py
+        __init__.py
+        settings.py
+        urls.py
+        wsgi.py
+    manage.py
+</code></pre>
+<h2 id="urls-management">URLS management</h2>
+<p>The urls.py file in the main folder, i.e. blog folder is the main <strong>urls</strong> file. Django checks this file to find the routes requested by the user. So, urls of other apps will be included in this file. Let’s create a <code>urls.py</code> file for our core app(<code>urls.py</code> files are not created automatically for the apps as that of the main app).</p>
+<pre><code>from django.urls import include, path
+
+from blog.core import views
+
+urlpatterns = [
+    path('', views.homepage, name="home"),
+]
+</code></pre>
+<p>Here I have created a route that calls the homepage view. <strong>homepage</strong> view is called by importing the views file of <code>blog.core</code>. To import anything in this folder structure, we need to make sure that we first provide the main app name (e.g. blog) followed by the sub-app name (e.g. core).</p>
+<pre><code>from &lt;main_app_name&gt;.&lt;sub_app_name&gt;.&lt;file_name&gt; import *
+
+OR
+
+from &lt;main_app_name&gt;.&lt;sub_app_name&gt; import &lt;file_name&gt;
+</code></pre>
+<p>From the first method, we can directly use the class, function or object name directly. Whereas, using the second method we need to use the class, function, object, or variable name using <strong>“<file_name>.<required_componen>”</strong>. For example, the way I imported homepage in the urls.py file of the core app.</p>
+<p>Now define a view named homepage inside <strong>core app’s views.py</strong> file</p>
+<pre><code>from django.shortcuts import render
+from django.http import HttpResponse
+
+
+def homepage(request):
+    return HttpResponse("Hello world!!!")
+</code></pre>
+<p>Now we need to include this route in our main ‘urls.py’ file as</p>
+<pre><code>#! blog/urls.py
+
+"""
+blog URL Configuration
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+https://docs.djangoproject.com/en/2.2/topics/http/urls/
+Examples:
+Function views
+1. Add an import:  from my_app import views
+2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+1. Add an import:  from other_app.views import Home
+2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+1. Import the include() function: from django.urls import include, path
+2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+from django.contrib import admin
+from django.urls import path, include # import include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+
+    path('', include('blog.core.urls')),
+]
+</code></pre>
+<p>Now start the server</p>
+<pre><code>python manage.py runserver
+</code></pre>
+<p>Before starting the server, make sure you have activated the virtual environment for this project. After starting the server, you will see the following output in your console</p>
+<pre><code>Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 17 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+
+August 13, 2020 - 11:13:40
+Django version 2.2.6, using settings 'blog.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+</code></pre>
+<p>To remove the error of migration as shown above, you need to perform migrations. For this you need to configure your database settings in settings.py file (Or leave it as is to use sqlite database). Run the following command to run migrations:</p>
+<pre><code>python manage.py migrate
+</code></pre>
+<p>After this, the console output won’t show any error. Now our application will run on localhost:8000 or 127.0.0.1:8000</p>
+<p>If you want to change the port where our application runs you need to start the server using:</p>
+<pre><code>python manage.py runserver &lt;port&gt;
+</code></pre>
+<p>If you want any other person in your internal network (like office network, home network) to view your application or access any API from this application from their personal computer, you need to run the server using:</p>
+<pre><code>python manage.py runserver 0.0.0.0:&lt;port&gt;
+</code></pre>
+<p>Then the next person can access your application by entering the following in their browser:</p>
+<pre><code>http://&lt;your_ip_address&gt;:&lt;port&gt;
+</code></pre>
+<p><strong>Note: Make sure you and the other person are connected to the same network.</strong></p>
+<p>Now let’s view the output in the browser. Go to your browser and enter localhost:8000 or 127.0.0.1:8000 in your browser url. Then you will see "Hello world!!!" displayed in the screen. <strong>Success!!!</strong></p>
+<p>Let’s go through how this output is obtained.</p>
+<ol>
+<li>When you enter localhost:8000 in your browser, our application searches for an empty route, i.e. path(‘’). It is because we have not entered anything after localhost:8000. </li>
+<li>The application first searches through routes listed in urls.py file in a top-to-bottom manner.</li>
+<li>Then it finds the path   <code>path(‘’, include(‘blog.core.urls’)),</code></li>
+<li>Then it knows that it needs to search for routes inside our core app. So, in the next step, it searches the url route in core’s urls.py file.</li>
+<li>Then it finds the path that meets it’s requirement, i.e. <code>path(‘’, views.homepage, name=”home”),</code></li>
+<li>If the application does not find any suitable route, 404 error is sent.</li>
+<li>After it has found the suitable route, it calls the respective view, i.e. homepage.</li>
+<li>The system then executes the function homepage and returns a text to the browser “Hello world!!!”. It is because we have returned a HttpResponse from the homepage view. A view can return a HttpResponse, HttpResponseRedirect, Response, JsonResponse, render a template, etc.</li>
+</ol>
+<p>We have now created a project in Django. Follow the above suggestions to format the project folder structure. For coding standards, we will use PEP8 standards strictly.</p>
+<p>I will provide other documents relating code formatting we will be using to develop our projects.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
