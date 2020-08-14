@@ -1,4 +1,5 @@
 site_name: Django Coding Standard
 nav:
     - Home: index.md
+    - Coding Standard: code_standard.md
 theme: readthedocs
