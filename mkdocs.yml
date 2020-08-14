@@ -1,0 +1,4 @@
+site_name: Django Coding Standard
+nav:
+    - Home: index.md
+theme: readthedocs
