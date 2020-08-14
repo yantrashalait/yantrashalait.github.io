@@ -1,5 +1,5 @@
-site_name: Django Coding Standard
+site_name: Yantrashala Docs
 nav:
     - Home: index.md
-    - Coding Standard: code_standard.md
-theme: readthedocs
+    - Coding Format: code_standard.md
+    - Django Setup: django_setup.md
