@@ -4,26 +4,26 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="None">
         
         
-        <link rel="shortcut icon" href="img/favicon.ico">
-        <title>Yantrashala Docs</title>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/base.css" rel="stylesheet">
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Django Rest Framework(DRF) - Yantrashala Docs</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
-        <script src="js/jquery-1.10.2.min.js" defer></script>
-        <script src="js/bootstrap.min.js" defer></script>
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
-    <body class="homepage">
+    <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href=".">Yantrashala Docs</a>
+                <a class="navbar-brand" href="..">Yantrashala Docs</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -33,14 +33,14 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="navitem active">
-                                <a href="." class="nav-link">Home</a>
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
                             </li>
                             <li class="navitem">
-                                <a href="code_standard/" class="nav-link">Coding Format</a>
+                                <a href="../code_standard/" class="nav-link">Coding Format</a>
                             </li>
                             <li class="navitem">
-                                <a href="django_setup/" class="nav-link">Django Setup</a>
+                                <a href="../django_setup/" class="nav-link">Django Setup</a>
                             </li>
                         </ul>
 
@@ -50,16 +50,6 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li class="nav-item">
-                                <a rel="prev" class="nav-link disabled">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="code_standard/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
                     </ul>
                 </div>
             </div>
@@ -78,8 +68,12 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="2"><a href="#yantrashala-docs" class="nav-link">Yantrashala Docs</a>
+            <li class="nav-item" data-level="1"><a href="#django-rest-frameworkdrf" class="nav-link">Django Rest Framework(DRF)</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#introduction" class="nav-link">Introduction</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -87,13 +81,31 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h2 id="yantrashala-docs">Yantrashala Docs</h2>
-<p>Find your required documents from the list below:</p>
-<ol>
-<li><a href="code_standard/">Coding Format</a></li>
-<li><a href="django_setup/">Django Tutorial</a></li>
-<li><a href="genericapi/">Django Rest Framework</a></li>
-</ol></div>
+<h1 id="django-rest-frameworkdrf">Django Rest Framework(DRF)</h1>
+<h2 id="introduction">Introduction</h2>
+<p>DRF is a django-package that helps us to build RESTFul APIs for our system. APIs are
+used to transfer data from one platform to another. Although there are some other 
+packages in Django that help us to build RESTFul APIs, we will be using DRF. </p>
+<p>Commonly, to create a API using DRF, we only need three files:</p>
+<h5 id="urls">Urls</h5>
+<p>This file is used to define the routes of the API endpoints. It is same as that 
+of a normal urls.py file in django. We can also define routers in urls.py file. </p>
+<p>While using a ModelViewSet, we don't need to define a separate url path for each 
+of the operation, but we can create routers for such ViewSets and the url paths
+are automatically generated for the given ViewSet. We will discuss about this later.</p>
+<h5 id="serializers">Serializers</h5>
+<p>Serializers are used to convert the queryset and model objects into python data-types
+which can be easily rendered into JSON or XML contents. Similarly, serializers
+also allow us to convert the parsed data from the incoming data into complex types.</p>
+<p>Serializers act like a Django Form. It helps us to define the data fields, types of
+data fields, etc. to be sent as a response. </p>
+<h5 id="viewsets">Viewsets</h5>
+<p>Viewsets are like views in Django. It is called when a request is made to a specific
+url path. Then it collects the data, performs operation on the collected data and sends
+out the required data as response.</p>
+<p>It uses a serializer to send out the data in correct format(i.e. either JSON or XML).
+Also, the serializer helps the viewset to restrict the data fields to be sent out as
+a response.</p></div>
             </div>
         </div>
 
@@ -102,11 +114,11 @@
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>
-            var base_url = ".",
+            var base_url = "..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="js/base.js" defer></script>
-        <script src="search/main.js" defer></script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -174,8 +186,3 @@
 
     </body>
 </html>
-
-<!--
-MkDocs version : 1.1.2
-Build Date UTC : 2020-08-17 12:31:25.426131+00:00
--->
