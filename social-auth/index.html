@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Social authentication API - Yantrashala Docs</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Yantrashala Docs</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../code_standard/" class="nav-link">Coding Format</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../django_setup/" class="nav-link">Django Setup</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#social-authentication-api" class="nav-link">Social authentication API</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#setup" class="nav-link">Setup</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#key-setup" class="nav-link">Key Setup</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#pipeline" class="nav-link">Pipeline</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#how-does-it-work" class="nav-link">How Does it Work?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#jumping-into-api-creation" class="nav-link">Jumping into API Creation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="social-authentication-api">Social authentication API</h1>
+<p>We will use <code>social-auth-app-django</code> for integrating social authentication in our
+systems. The official documentation can be found in http://python-social-auth.readthedocs.org/</p>
+<h2 id="setup">Setup</h2>
+<pre><code>pip install social-auth-app-django
+</code></pre>
+<p>Add <code>social_django</code> to your INSTALLED_APPS. Then migrate:</p>
+<pre><code>python manage.py migrate
+</code></pre>
+<p>Now we need to choose which social backends we shall use in our system. We can specify
+that in the AUTHENTICATION_BACKENDS as:</p>
+<pre><code>AUTHENTICATION_BACKENDS += [
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+]
+</code></pre>
+<p>GoogleOAuth2 is for google login, FacebookOAuth2 is for facebook login and so on.
+You can find information about other backends from the official documentation.</p>
+<p>Now in our <strong>local_settings.py</strong> file, we will include the keys to be used for social
+authentication to work. There are different keys required for each authentication
+backend, for example, google login will have it's own set of keys different from
+keys required for facebook.</p>
+<h2 id="key-setup">Key Setup</h2>
+<p>You can find the key information to be filled for each authentication backend from
+the official documentation. I will only discuss about Google and Facebook authentication
+in this documentation.</p>
+<h3 id="for-google">For Google</h3>
+<pre><code>SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "google_auth_key/public_key"
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "google_auth_secret_key"
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_IGNORE_DEFAULT_SCOPE = True
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
+    'https://www.googleapis.com/auth/userinfo.email',
+    'https://www.googleapis.com/auth/userinfo.profile',
+]
+</code></pre>
+<p>We can find such keys in the developer console of Google. Also, you can search
+in your browser for how to generate such keys.</p>
+<h3 id="for-facebook">For Facebook</h3>
+<pre><code>SOCIAL_AUTH_FACEBOOK_KEY = "facebook_public_key"
+SOCIAL_AUTH_FACEBOOK_SECRET = "facebook_secret_key"
+
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+</code></pre>
+<p>You can find the keys required above from facebook developers console.</p>
+<h2 id="pipeline">Pipeline</h2>
+<p>Pipelines are essential components for social authentication in Django. They 
+help us to perform various operations before and after social authentication.
+Along with this, they help us to define what operations are to be included and
+what are to be excluded for social authentication.</p>
+<p>Pipeline is useful for us to determine whether we need to use the social authentication
+for login only or both login and registration. For our system, we will use both
+login and registration. So, we need to make sure that <code>social_django</code> knows what
+operations are to be done and what is the flow for authentication. We specify this
+inside the pipeline in our <strong>local_settings.py</strong> or <strong>settings.py</strong> file:</p>
+<pre><code>SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.auth_allowed',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.social_auth.associate_by_email',
+    'social_core.pipeline.user.create_user',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+)
+</code></pre>
+<p>This pipeline is used for both user login and user creation. The manually registered
+user can also be able to login using <strong>"Login with Google"</strong> button as the users are
+associated with email(specified in pipeline).</p>
+<h2 id="how-does-it-work">How Does it Work?</h2>
+<p>After using <code>social_django</code> in our <code>INSTALLED_APPS</code> and migrating, few tables are 
+created in our database, for instance, SocialAuthUser. This table holds the information
+of the users that are associated with "Google Login" or "Facebook Login". This table
+holds the information of our django user using a foreign key to the user table.</p>
+<p>Now whenever an un-registered user tries to login to the system using social login,
+entry for the user is created in both the social auth table and django user table.</p>
+<p>Similarly, if a manually registered user tries to login with social auth, a new record
+is created in the social auth table and user is logged in by associating his/her
+email which he/she had entered during manual registration.</p>
+<p>Social Login and Registration can be obtained from same API.</p>
+<h2 id="jumping-into-api-creation">Jumping into API Creation</h2>
+<p>After the setup is done, we can create API for social authentication. For this, 
+in our <code>auth.py</code> file inside api.urls folder, we need to create a urlpattern as:</p>
+<pre><code>from django.conf.urls import url
+
+auth_url_patterns = [
+    '...'
+    url(r'^exchange-token/(?&lt;backend&gt;[^/]+)$', view_name)
+]
+</code></pre>
+<p>The <code>backend</code> specified in the url is the named of the backend(google or facebook).
+This API will be hit from the front-end or mobile application in such manner:</p>
+<pre><code>http://localhost:8000/api/v1/exchange-token/google-oauth2 # for google
+http://localhost:8000/api/v1/exchange-token/facebook # for facebook
+</code></pre>
+<p>Now we need to create a view for social authentication API.</p>
+<p>So let's move towards the viewsets folder of api app and inside the <code>auth.py</code> file
+of viewsets, we create a api_view as:</p>
+<pre><code>import json
+
+from django.contrib.auth import get_user_model
+from django.views.decorators.csrf import csrf_exempt
+
+from social_django.utils import psa, load_strategy, load_backend
+
+User = get_user_model()
+
+@csrf_token
+@psa('social:complete')
+def exchange_token(request, *args, **kwargs):
+    # return error message if request method is not POST
+    if request.method != "POST":
+        return Response({
+            "ack": False,
+            "msg": "Method not allowed"
+        })
+    else:
+        # get access_token from the request data
+        request_body = json.loads(request.body)
+        access_token = request_body.get("access_token", "")
+
+        # check if access_token is None or empty
+        if not access_token or access_token == "":
+            return Respose({
+                "ack": False,
+                "msg": "Access Token is missing."
+            })
+        try:
+            ## this is the part where actual authentication is performed.
+            ## user_req is the actual user for our system.
+            user_req = request.backend.do_auth(access_token)
+        except Exception as e:
+            return Response({
+                "ack": False,
+                "msg": "Authentication failed."
+            })
+        if user_req and user_req.is_active:
+            ## ToDo: generate the user token for the authenticated user.
+            ## send the token as a Response
+</code></pre>
+<p>So, let's go through the code to understand it. </p>
+<p>First we have declared a function <code>exchange_token</code> where we have used two decorators,
+csrf_token and psa. <code>csrf_token</code> is used to prevent any CSRFToken error that may
+arise when request is made from the front-end or mobile application to this endpoint.</p>
+<p>Similarly, <code>psa</code> is used to define the type of authentication this view performs.
+'social:complete' helps the view to perform the final completion of authentication.</p>
+<p>This view will require an <code>access_token</code> to authenticate the user. This <code>access_token</code>
+is obtained from the front-end application. The request data shoould be sent in
+raw JSON format. </p>
+<p>Now, if the request method is a POST method and access_token is also sent in the
+request, our view proceeds to authenticating the user. <code>request.backend.do_auth</code> is 
+responsible for authenticating the user. <code>request.backend</code> will change as per
+the <code>backend</code> specified in the url. The <code>do_auth</code> function for each authentication
+backend is different to each other.</p>
+<p>If the user is authenticated successfully, a token is generated for the user and 
+is sent out as a Response.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
