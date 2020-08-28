@@ -274,9 +274,11 @@ To use the constant in the whole project, we can define the constant in a file a
 </ul>
 <h2 id="database-structure">Database Structure</h2>
 <p>In our projects, we will be using normalized database architecture upto 3NF. For user table, we will use the default Django User model. If additional fields are to be added in the User model, we will create a custom user model by inheriting the AbstractUser. In case the fields can be added in user profile, we will create a user profile model using One-To-One relationship between user and user profile.</p>
-<p>Creating a custom User model extending the <code>AbstractUser</code>:
-    from django.contrib.auth.models import AbstractUser</p>
-<pre><code>class CustomUser(AbstractUser):
+<p>Creating a custom User model extending the <code>AbstractUser</code>:</p>
+<pre><code>from django.contrib.auth.models import AbstractUser
+
+
+class CustomUser(AbstractUser):
     """
     Define the fields to be added in Django default User model.
     """
