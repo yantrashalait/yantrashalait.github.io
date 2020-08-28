@@ -4,26 +4,26 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="None">
         
         
-        <link rel="shortcut icon" href="img/favicon.ico">
-        <title>Yantrashala Docs</title>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/base.css" rel="stylesheet">
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Response Format - Yantrashala Docs</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
-        <script src="js/jquery-1.10.2.min.js" defer></script>
-        <script src="js/bootstrap.min.js" defer></script>
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
-    <body class="homepage">
+    <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href=".">Yantrashala Docs</a>
+                <a class="navbar-brand" href="..">Yantrashala Docs</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -33,14 +33,14 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="navitem active">
-                                <a href="." class="nav-link">Home</a>
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
                             </li>
                             <li class="navitem">
-                                <a href="code_standard/" class="nav-link">Coding Format</a>
+                                <a href="../code_standard/" class="nav-link">Coding Format</a>
                             </li>
                             <li class="navitem">
-                                <a href="django_setup/" class="nav-link">Django Setup</a>
+                                <a href="../django_setup/" class="nav-link">Django Setup</a>
                             </li>
                         </ul>
 
@@ -50,16 +50,6 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li class="nav-item">
-                                <a rel="prev" class="nav-link disabled">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="code_standard/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
                     </ul>
                 </div>
             </div>
@@ -78,8 +68,12 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="2"><a href="#yantrashala-docs" class="nav-link">Yantrashala Docs</a>
+            <li class="nav-item" data-level="1"><a href="#response-format" class="nav-link">Response Format</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#how-to-write" class="nav-link">How to write?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -87,15 +81,36 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h2 id="yantrashala-docs">Yantrashala Docs</h2>
-<p>Find your required documents from the list below:</p>
-<ol>
-<li><a href="code_standard/">Coding Format</a></li>
-<li><a href="django_setup/">Django Tutorial</a></li>
-<li><a href="genericapi/">Django Rest Framework</a></li>
-<li><a href="response/">Response format</a></li>
-<li><a href="social-auth/">Social Authentication API</a></li>
-</ol></div>
+<h1 id="response-format">Response Format</h1>
+<p>Our standard response format for each API will be:</p>
+<pre><code>{
+    "ack": True or False,
+    "msg": "Success or error message",
+    "data": [] # if data is to be sent as a response
+}
+</code></pre>
+<p>Each response should include <code>ack</code> field. <code>msg</code> and <code>data</code> fields can be included
+as per the response requirement. For example, a response of objection creation
+API can only send <code>ack</code> and "Successfully created." as <code>msg</code>. Similarly, a detail
+or list API will include <code>ack</code> and <code>data</code> fields in the response.</p>
+<h2 id="how-to-write">How to write?</h2>
+<p>To send the response from your view:</p>
+<pre><code>return Response({
+    "ack": True,
+    "msg": "Success"
+}, status=status.HTTP_200_OK)
+
+or,
+
+return Response({
+    "ack": True,
+    "data": serializer.data
+}, status=status.HTTP_200_OK)
+</code></pre>
+<p>Both <code>msg</code> and <code>data</code> can be included in the response if required. The status in 
+<code>status.HTTP_200_OK</code> can be imported as:</p>
+<pre><code>from rest_framework import status
+</code></pre></div>
             </div>
         </div>
 
@@ -104,11 +119,11 @@
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>
-            var base_url = ".",
+            var base_url = "..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="js/base.js" defer></script>
-        <script src="search/main.js" defer></script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -176,8 +191,3 @@
 
     </body>
 </html>
-
-<!--
-MkDocs version : 1.1.2
-Build Date UTC : 2020-08-23 07:20:33.522418+00:00
--->
