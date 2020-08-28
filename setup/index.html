@@ -4,26 +4,26 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="None">
         
         
-        <link rel="shortcut icon" href="img/favicon.ico">
-        <title>Yantrashala Docs</title>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/base.css" rel="stylesheet">
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Setting up YantrashalaCMS in your machine - Yantrashala Docs</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
-        <script src="js/jquery-1.10.2.min.js" defer></script>
-        <script src="js/bootstrap.min.js" defer></script>
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
-    <body class="homepage">
+    <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href=".">Yantrashala Docs</a>
+                <a class="navbar-brand" href="..">Yantrashala Docs</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -33,14 +33,14 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="navitem active">
-                                <a href="." class="nav-link">Home</a>
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
                             </li>
                             <li class="navitem">
-                                <a href="code_standard/" class="nav-link">Coding Format</a>
+                                <a href="../code_standard/" class="nav-link">Coding Format</a>
                             </li>
                             <li class="navitem">
-                                <a href="django_setup/" class="nav-link">Django Setup</a>
+                                <a href="../django_setup/" class="nav-link">Django Setup</a>
                             </li>
                         </ul>
 
@@ -50,16 +50,6 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li class="nav-item">
-                                <a rel="prev" class="nav-link disabled">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="code_standard/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
                     </ul>
                 </div>
             </div>
@@ -78,7 +68,7 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="2"><a href="#yantrashala-docs" class="nav-link">Yantrashala Docs</a>
+            <li class="nav-item" data-level="1"><a href="#setting-up-yantrashalacms-in-your-machine" class="nav-link">Setting up YantrashalaCMS in your machine</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -87,17 +77,49 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h2 id="yantrashala-docs">Yantrashala Docs</h2>
-<p>Find your required documents from the list below:</p>
-<ol>
-<li><a href="code_standard/">Coding Format</a></li>
-<li><a href="django_setup/">Django Tutorial</a></li>
-<li><a href="setup/">CMS Setup</a></li>
-<li><a href="genericapi/">Django Rest Framework</a></li>
-<li><a href="response/">Response format</a></li>
-<li><a href="social-auth/">Social Authentication API</a></li>
-<li><a href="architecture/">Components</a></li>
-</ol></div>
+<h1 id="setting-up-yantrashalacms-in-your-machine">Setting up YantrashalaCMS in your machine</h1>
+<h4 id="clone-the-repository">Clone the repository</h4>
+<pre><code>git clone git@github.com:yantrashalait/CMS.git
+</code></pre>
+<h4 id="setup-docker">Setup Docker</h4>
+<p>Install docker in your local machine.</p>
+<h4 id="build-the-docker-containers">Build the docker containers</h4>
+<p>First, you need to setup the containers in your machine. Go to directory that
+you have cloned from GitHub.</p>
+<pre><code>docker-compose -f docker-compose.yml up --build
+</code></pre>
+<p>Now you can see containers built by using the following command:</p>
+<pre><code>docker ps
+</code></pre>
+<p>It shall list some containers like django4cms, db4cms, yantrashalacms_redis_1, etc.
+These are the containers name.</p>
+<h4 id="start-the-containers">Start the containers</h4>
+<p>Next time you need to start the container, you can do it with the following command:</p>
+<pre><code>docker-compose -f docker-compose.yml up -d
+</code></pre>
+<p>To view the logs directly in your screen, use</p>
+<pre><code>docker-compose -f docker-compose.yml up
+</code></pre>
+<h4 id="stop-the-containers">Stop the containers</h4>
+<p>After you have finished performing your tasks for the day, it is a good practice
+to stop the containers. For that you can use:</p>
+<pre><code>docker-compose -f docker-compose.yml down
+</code></pre>
+<h4 id="restart-a-container">Restart a container</h4>
+<p>For example: to reflect any changes in django4cms container, you don't need to
+stop the whole containers. Instead use</p>
+<pre><code>docker restart &lt;container_id&gt;
+</code></pre>
+<h4 id="to-go-inside-the-shell-of-any-container">To go inside the shell of any container</h4>
+<pre><code>docker exec -it &lt;container_name_or_id&gt; bash
+</code></pre>
+<h4 id="to-execute-any-command-inside-a-container">To execute any command inside a container</h4>
+<pre><code>docker exec -it &lt;container_name_or_id&gt; &lt;command&gt;
+
+e.g.
+docker exec -it django4cms python manage.py migrate
+docker exec -it django4cms python manage.py makemigrations
+</code></pre></div>
             </div>
         </div>
 
@@ -106,11 +128,11 @@
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>
-            var base_url = ".",
+            var base_url = "..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="js/base.js" defer></script>
-        <script src="search/main.js" defer></script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -178,8 +200,3 @@
 
     </body>
 </html>
-
-<!--
-MkDocs version : 1.1.2
-Build Date UTC : 2020-08-28 15:34:22.547592+00:00
--->
